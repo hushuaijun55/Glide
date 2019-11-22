@@ -1,4 +1,3 @@
-@[TOC]
 [同步BLOG请点击](https://blog.csdn.net/hshuaijun55/article/details/103202477)
 # 1.背景
 一个app中的图片加载类肯定是要封装后再使用的。一方面调用方式统一，另外是稍加调整或更换图片加载库也方便。Android的图片加载类库有很多，目前主流的Glide用起来是相当丝滑的，本文是基于v4以后的版本的介绍。框架里一般的使用方法，及常用方法，各位自行百度google，这里介绍几个我关注的知识点。另外进阶级文章介绍Glide，我推荐链接：https://muyangmin.github.io/glide-docs-cn/doc/download-setup.html 。
