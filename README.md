@@ -85,18 +85,18 @@ public void loadImage(View view) {
 3. 为什么我没有修改缓存配置。因为默认情况已经做的很好了。v4版本跟v3版本不同的是缓存策略也做了修改。  
 + 默认情况下，Glide 会在开始一个新的图片请求之前检查以下多级的缓存：  
 > 1.活动资源 (Active Resources) - 现在是否有另一个 View 正在展示这张图片？  
->2.内存缓存 (Memory cache) - 该图片是否最近被加载过并仍存在于内存中？  
->3.资源类型（Resource） - 该图片是否之前曾被解码、转换并写入过磁盘缓存？  
->4.数据来源 (Data) - 构建这个图片的资源是否之前曾被写入过文件缓存？  
+> 2.内存缓存 (Memory cache) - 该图片是否最近被加载过并仍存在于内存中？  
+> 3.资源类型（Resource） - 该图片是否之前曾被解码、转换并写入过磁盘缓存？  
+> 4.数据来源 (Data) - 构建这个图片的资源是否之前曾被写入过文件缓存？  
 
 前两步检查图片是否在内存中，如果是则直接返回图片。后两步则检查图片是否在磁盘上，以便快速但异步地返回图片。
 如果四个步骤都未能找到图片，则Glide会返回到原始资源以取回数据（原始文件，Uri, Url等）。
 + 缓存策略
-> DiskCacheStrategy.ALL      ==所有版本都会缓存==
->DiskCacheStrategy.NONE      ==所有版本都不缓存==
->DiskCacheStrategy.DATA        ==缓存解码之前的原始信息==
->DiskCacheStrategy.RESOURCE       ==缓存解码之后的数据信息==
->DiskCacheStrategy.AUTOMATIC       ==默认模式==
+>1. DiskCacheStrategy.ALL     所有版本都会缓存
+>2. DiskCacheStrategy.NONE      所有版本都不缓存
+>3. DiskCacheStrategy.DATA        缓存解码之前的原始信息
+>4. DiskCacheStrategy.RESOURCE      缓存解码之后的数据信息
+>5. DiskCacheStrategy.AUTOMATIC       默认模式
 
 默认的策略叫做 AUTOMATIC ，它会尝试对本地和远程图片使用最佳的策略。当你加载远程数据（比如，从URL下载）时，AUTOMATIC 策略仅会存储未被你的加载过程修改过(比如，变换，裁剪–译者注)的原始数据，因为下载远程数据相比调整磁盘上已经存在的数据要昂贵得多。对于本地数据，AUTOMATIC 策略则会仅存储变换过的缩略图，因为即使你需要再次生成另一个尺寸或类型的图片，取回原始数据也很容易。
 
